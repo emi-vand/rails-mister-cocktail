@@ -5,9 +5,6 @@
         <h1><%= @cocktail.name.capitalize %></h1>
       </div>
     </div>
-    <div class="delete_btn">
-      <%= link_to "Delete", cocktail_path(@cocktail), method: :delete, data: { confirm: "Do you really want to delete?"} %>
-    </div>
 <div class="row">
       <div class="col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-3 col-md-6">
         <h3>Ingredients:</h3>
@@ -18,9 +15,9 @@
         <table>
         <% @cocktail.doses.each do |dose| %>
           <% if dose.description == "1" %>
-            <tr><td><i class="fas fa-glass-martini"></i> 1 dose of <%= dose.ingredient.name %></td><td><%= link_to "🗑", dose_path(dose), method: :delete, data: { confirm: "Do you really want to delete?"} %></td></tr>
+            <tr><td><i class="fas fa-glass-martini"></i> 1 dose of <%= dose.ingredient.name  %></td><td><%= link_to "   🗑", dose_path(dose), method: :delete, data: { confirm: "Do you really want to delete?"} %></td></tr>
           <% else %>
-            <tr><td><i class="fas fa-glass-martini"></i> <%= dose.description %> doses of <%= dose.ingredient.name %></td><td><%= link_to "🗑", dose_path(dose), method: :delete, data: { confirm: "Do you really want to delete?"} %></td></tr>
+            <tr><td><i class="fas fa-glass-martini"></i> <%= dose.description %> doses of <%= dose.ingredient.name  %></td><td><%= link_to "   🗑", dose_path(dose), method: :delete, data: { confirm: "Do you really want to delete?"} %></td></tr>
           <% end %>
         <% end %>
        </table>
@@ -36,11 +33,17 @@
         <%= simple_form_for [@cocktail, @dose], html: { class: "form-inline"} do |f| %>
         <%= f.association :ingredient, label: "Ingredient: ", prompt: "Select an ingredient", collection: Ingredient.order('name ASC'), required: false  %>
           <%= f.input :description, label: "Quantity: ", required: false, as: :integer, input_html: { style: 'width: 80px'} %>
-          <%= f.button :submit, name: "commit", value: "Add", class: 'btn btn-primary' %>
+          <%= f.button :submit, name: "commit", value: "Add", class: 'btn btn-dark' %>
         <% end %>
       </div>
     </div>
 </div>
 </div>
-
+<div class="add-ingredient-page-btn">
+<div class="btn btn-secondary">
 <%= link_to "Cocktail List", cocktails_path%>
+</div>
+    <div class="btn btn-secondary">
+      <%= link_to "Delete", cocktail_path(@cocktail), method: :delete, data: { confirm: "Do you really want to delete?"} %>
+    </div>
+  </div>
