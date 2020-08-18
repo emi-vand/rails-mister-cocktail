@@ -1,8 +1,8 @@
 <div class="show-wrapper">
-  <div class="container">
+  <div class="container" >
     <div class="row">
       <div class="col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-3 col-md-6">
-        <h1><%= @cocktail.name.capitalize %></h1>
+        <h1 style="padding-top: 50px"><%= @cocktail.name.capitalize %></h1>
       </div>
     </div>
 <div class="row">
@@ -28,7 +28,8 @@
         <h3 style="font: Arial, font-size:20px">Add an ingredient:</h3>
       </div>
     </div>
-    <div class="row">
+    <div class="row" style="  display: flex;
+  align-items: center;">
       <div class="col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-3 col-md-6">
         <%= simple_form_for [@cocktail, @dose], html: { class: "form-inline"} do |f| %>
         <%= f.association :ingredient, label: "Ingredient: ", prompt: "Select an ingredient", collection: Ingredient.order('name ASC'), required: false  %>
@@ -39,7 +40,8 @@
     </div>
 </div>
 </div>
-<div class="add-ingredient-page-btn">
+<div class="add-ingredient-page-btn" style="display: flex;
+  justify-content: center;">
 <div class="btn btn-secondary">
 <%= link_to "Cocktail List", cocktails_path%>
 </div>
